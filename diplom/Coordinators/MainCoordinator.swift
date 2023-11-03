@@ -8,6 +8,11 @@
 import Foundation
 import UIKit
 
+
+protocol MainCoordinatorParentProtocol: AnyObject {
+    func switchFlow()
+}
+
 final class MainCoordinator {
     
     // MARK: - Private properties
@@ -29,13 +34,41 @@ final class MainCoordinator {
     private func removeChildCoordinator(coordinator: CoordinatorProtocol) {
         childsCoordinators.removeAll(where: {$0 === coordinator})
     }
+    
+    private func setFlow(to newViewController: UIViewController) {
+         rootViewController.addChild(newViewController)
+         newViewController.view.frame = rootViewController.view.frame
+         rootViewController.view.addSubview(newViewController.view)
+         newViewController.didMove(toParent: rootViewController)
+     }
+    
+    private func setTabBarCoordinator() -> CoordinatorProtocol {
+        let tabBarController = UITabBarController()
+        let tabBarCoordinator = TabBarCoordinator(parentCoordinator: self,
+                                                  tabBarController: tabBarController)
+        return tabBarCoordinator
+    }
+    
+    private func setLoginCoordinator() {
+        
+    }
+    
+}
+
+extension MainCoordinator: MainCoordinatorParentProtocol {
+    func switchFlow() {
+        ()
+    }
 }
 
 
 extension MainCoordinator: CoordinatorProtocol {
     
     func start() -> UIViewController {
-        <#code#>
+        var coordinator: CoordinatorProtocol
+        coordinator = setTabBarCoordinator()
+        addChildCoordinator(coordinator: coordinator)
+        return coordinator.start()
     }
     
 }
