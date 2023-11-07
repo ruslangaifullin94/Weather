@@ -11,7 +11,7 @@ import UIKit
 final class ProfileCoordinator: DefaultCoordinator {
     
     override func createViewController() -> UIViewController {
-        let viewController = HomeViewController()
+        let viewController = ProfileViewController()
         let navController = UINavigationController(rootViewController: viewController)
         navController.tabBarItem = UITabBarItem(title: "UI.ProfileScren.Title".localized,
                                                 image: UIImage(systemName: "person.crop.circle"),

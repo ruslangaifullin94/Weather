@@ -25,7 +25,7 @@ final class LocalLocationDataSource: LocationDataSource {
     
     func getLocation() -> AnyPublisher<UserLocation, LocationErrors> {
         Future { [locationDataStorage] promise in
-            if let location = try? locationDataStorage.readLocation().first {
+            if let location = locationDataStorage.readLocation().first {
                 promise(.success(location))
             }
         }.eraseToAnyPublisher()
@@ -33,28 +33,28 @@ final class LocalLocationDataSource: LocationDataSource {
     
     func saveLocation(_ location: UserLocation) {
         queue.async { [locationDataStorage] in
-            try? locationDataStorage.deleteLocation()
-            try? locationDataStorage.saveLocation(location)
+            locationDataStorage.deleteLocation()
+            locationDataStorage.saveLocation(location)
         }
     }
 }
 
 
-final class RemoteLocaationDataSource: LocationDataSource {
-    
-    
-    
-    func getLocation() -> AnyPublisher<UserLocation, LocationErrors> {
-        Future { promise in
-                if let location = CurrentLocationManager.shared.getLocation() {
-                    promise(.success(location))
-                } else {
-                    promise(.failure(LocationErrors.locationNotFound))
-                }
-        }.eraseToAnyPublisher()
-    }
-    
-    func saveLocation(_ location: UserLocation) { }
-    
-    
-}
+//final class RemoteLocaationDataSource: LocationDataSource {
+//    
+//    
+//    
+//    func getLocation() -> AnyPublisher<UserLocation, LocationErrors> {
+//        Future { promise in
+//                if let location = async CurrentLocationManager.shared.getLocation() {
+//                    promise(.success(location))
+//                } else {
+//                    promise(.failure(LocationErrors.locationNotFound))
+//                }
+//        }.eraseToAnyPublisher()
+//    }
+//    
+//    func saveLocation(_ location: UserLocation) { }
+//    
+//    
+//}

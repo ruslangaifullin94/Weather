@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "59A22297-E4EA-48DB-BCDB-5CECE2206304"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3D7AE045-34FA-41DB-921D-E99FC682388B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "diplom/Screens/HomeScreen/HomeViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "getLocation()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3D7AE045-34FA-41DB-921D-E99FC682388B - 10179efec0401037"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async -&gt; () in diplom.HomeViewModel.getLocation() -&gt; ()"
+                  moduleName = "diplom"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruslangajfullin/diplom/diplom/Screens/HomeScreen/HomeViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "3D7AE045-34FA-41DB-921D-E99FC682388B - e5ce0f2fec8fefcf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async -&gt; () in diplom.HomeViewModel.getLocation() -&gt; ()"
+                  moduleName = "diplom"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruslangajfullin/diplom/diplom/Screens/HomeScreen/HomeViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "3D7AE045-34FA-41DB-921D-E99FC682388B - 5e2d8e7fa76b5439"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async -&gt; () in diplom.HomeViewModel.getLocation() -&gt; ()"
+                  moduleName = "diplom"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruslangajfullin/diplom/diplom/Screens/HomeScreen/HomeViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "3D7AE045-34FA-41DB-921D-E99FC682388B - 7928863cf91ff638"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async -&gt; () in diplom.HomeViewModel.getLocation() -&gt; ()"
+                  moduleName = "diplom"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ruslangajfullin/diplom/diplom/Screens/HomeScreen/HomeViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
