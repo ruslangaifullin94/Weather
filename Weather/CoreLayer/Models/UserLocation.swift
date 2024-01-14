@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct UserLocation: Hashable {
+struct UserLocation: Hashable {
     let longitude: Double
     let latitude: Double
 }

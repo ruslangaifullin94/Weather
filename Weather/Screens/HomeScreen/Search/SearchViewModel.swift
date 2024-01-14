@@ -13,6 +13,7 @@ final class SearchViewModel {
     enum State {
         case initial
         case loaded(results: [CitySearchModel])
+        case clearResults
         case error(error: String)
     }
     
@@ -39,5 +40,9 @@ final class SearchViewModel {
 extension SearchViewModel {
     func searchCities(text: String) {
         getCities(text: text)
+    }
+    
+    func clearResults() {
+        state = .clearResults
     }
 }

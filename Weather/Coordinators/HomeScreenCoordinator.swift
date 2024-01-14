@@ -8,7 +8,8 @@
 import UIKit
 
 protocol HomeScreenCoordinatorProtocol: AnyObject {
-    func didTapAddButton()
+    func didTapHourlyWeather(model: City)
+    func didTapDaysWeather(model: City)
 }
 
 final class HomeScreenCoordinator: DefaultCoordinator {
@@ -41,7 +42,14 @@ extension HomeScreenCoordinator: CoordinatorProtocol {
 }
 
 extension HomeScreenCoordinator: HomeScreenCoordinatorProtocol {
-    func didTapAddButton() {
-        
+    func didTapHourlyWeather(model: City) {
+        ()
     }
+    
+    func didTapDaysWeather(model: City) {
+        let viewModel = DayViewModel(forecast: model)
+        let viewController = DayViewController(viewModel: viewModel)
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
 }

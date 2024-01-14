@@ -13,11 +13,9 @@ final class WeatherTimeCell: UICollectionViewCell {
     
     private lazy var timeLabel = UILabel()
         .text2
-        .with(\.textColor, setTo: .black)
     
     private lazy var tempLabel = UILabel()
         .text2
-        .with(\.textColor, setTo: .black)
     
     private lazy var iconView = UIImageView()
         
@@ -25,8 +23,7 @@ final class WeatherTimeCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         backgroundColor = .clear
-        contentView.makeRoundCorners([.layerMaxXMinYCorner,.layerMaxXMaxYCorner,.layerMinXMaxYCorner,.layerMinXMinYCorner],
-                                     radius: 20)
+        contentView.makeRoundCorners(.all, radius: 20)
         contentView.layer.borderColor = UIColor(named: "borderColor")?.cgColor
         contentView.layer.borderWidth = 0.5
         contentView.layer.masksToBounds = true
@@ -38,8 +35,7 @@ final class WeatherTimeCell: UICollectionViewCell {
     }
     
     private func setupView() {
-        makeRoundCorners([.layerMaxXMinYCorner,.layerMaxXMaxYCorner,.layerMinXMaxYCorner,.layerMinXMinYCorner],
-                         radius: 20)
+        makeRoundCorners(.all, radius: 20)
         addSubviews(tempLabel, timeLabel, iconView)
         
         timeLabel.snp.makeConstraints {

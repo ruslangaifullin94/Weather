@@ -18,13 +18,7 @@ public struct City: Hashable {
 }
 extension City {
     init(cityInfo: WeatherCodable) {
-        let locality = cityInfo.geoObject.locality?.name ?? "No Name"
-        let components = locality.components(separatedBy: " ")
-        if components.count == 2 {
-            self.name = components[1]
-        } else {
-            self.name = components[0]
-        }
+        self.name = cityInfo.geoObject.locality?.name ?? "No Name"
         self.weather = .init(weather: cityInfo)
     }
 }
@@ -129,7 +123,7 @@ extension PartsWeather {
 struct DayWeather: Hashable {
 //    let source: String
     let tempMin: Int
-    let tempAvg: Double?
+    let tempAvg: Int
     let tempMax: Int
     let windSpeed: Double?
     let windGust: Double?
@@ -150,12 +144,12 @@ struct DayWeather: Hashable {
     let daytime: PurpleDaytime
     let polar: Bool
     let freshSnowMm: Double?
-    let temp: Double?
+    let temp: Int?
     
     init(
 //        source: String,
          tempMin: Int,
-         tempAvg: Double?,
+         tempAvg: Int,
          tempMax: Int,
          windSpeed: Double?,
          windGust: Double?,
@@ -178,7 +172,7 @@ struct DayWeather: Hashable {
          daytime: PurpleDaytime,
          polar: Bool,
          freshSnowMm: Double?,
-         temp: Double?
+         temp: Int?
     ) {
 //        self.source = source
         self.tempMin = tempMin

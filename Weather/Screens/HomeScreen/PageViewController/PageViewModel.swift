@@ -10,6 +10,8 @@ import Combine
 
 protocol PageViewModelDelegate: AnyObject {
     func updateTitle(title: String)
+    func didSelectHourlyWeather(model: City?)
+    func didSelectDaysWeather(model: City?)
 }
 
 final class PageViewModel {
@@ -44,8 +46,8 @@ final class PageViewModel {
             let viewModel = HomeViewModel(weatherApiService: weatherApiService, 
                                           userLocation: location,
                                           forCurrentLocation: forCurrentLocation)
+            viewModel.delegate = self
             let viewController = HomeViewController(viewModel: viewModel)
-            viewController.delegate = self
             return viewController
         }
     }
@@ -79,6 +81,16 @@ extension PageViewModel {
 }
 
 extension PageViewModel: PageViewModelDelegate {
+    
+    func didSelectHourlyWeather(model: City?) {
+        guard let model else { return }
+        coordinator?.didTapHourlyWeather(model: model)
+    }
+    
+    func didSelectDaysWeather(model: City?) {
+        guard let model else { return }
+        coordinator?.didTapDaysWeather(model: model)
+    }
     
     func updateTitle(title: String) {
         state = .loaded(title: title)

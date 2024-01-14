@@ -87,7 +87,7 @@ struct Parts: Codable {
 struct Day: Codable {
 //    let source: String
     let tempMin: Int
-    let tempAvg: Double?
+    let tempAvg: Int
     let tempMax: Int
     let windSpeed: Double?
     let windGust: Double?
@@ -108,7 +108,7 @@ struct Day: Codable {
     let daytime: PurpleDaytime
     let polar: Bool
     let freshSnowMm: Double?
-    let temp: Double?
+    let temp: Int?
 }
 
 enum PurpleDaytime: String, Codable {

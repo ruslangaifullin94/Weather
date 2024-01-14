@@ -28,7 +28,7 @@ final class MainCell: UICollectionViewCell {
     }
     
     func setupView() {
-        makeRoundCorners([.layerMaxXMinYCorner,.layerMaxXMaxYCorner,.layerMinXMaxYCorner,.layerMinXMinYCorner], radius: LayoutConstants.smallRadius)
+        makeRoundCorners(.all, radius: LayoutConstants.smallRadius)
         addSubviews(tempLabel, conditionLabel)
         
         tempLabel.snp.makeConstraints {

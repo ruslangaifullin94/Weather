@@ -101,7 +101,6 @@ class HomeViewController: NiblessViewController {
             case .loaded(let city):
                 makeSnapshot(city: city)
                 navigationItem.title = city.name
-                delegate?.updateTitle(title: city.name)
                 refreshControl.endRefreshing()
                 collectionView.alpha = 1
                 shimmer.stopShimmering()
@@ -153,5 +152,17 @@ class HomeViewController: NiblessViewController {
 
 //MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
- 
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = dataSource.itemIdentifier(for: indexPath) else { return }
+        switch cell {
+        case .main:
+            return
+        case .timing:
+            viewModel.didSelectHourlyWeather()
+        case .days:
+            viewModel.didSelectDaysWeather()
+        }
+    }
+    
 }

@@ -74,6 +74,8 @@ final class SearchResultController: NiblessViewController {
                     makeSnapshot(with: results)
                 case .error(let error):
                     print(error)
+                case .clearResults:
+                    makeSnapshot(with: [])
                 }
             }.store(in: &subscriptions)
     }
@@ -106,7 +108,7 @@ final class SearchResultController: NiblessViewController {
         searchBar.endEditing(true)
         searchBar.text = ""
         searchBar.searchTextField.attributedPlaceholder = NSMutableAttributedString {
-            AttributedText("Strings.searchEmployee")
+            AttributedText("UI.Search.Title".localized)
                 .font(.rubik(size: 14, weight: .regular))
                 .foregroundColor(.secondText)
         }
@@ -152,7 +154,7 @@ extension SearchResultController: UITextFieldDelegate {
     }
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
-//        viewModel.clearResults()
+        viewModel.clearResults()
         
         return true
     }

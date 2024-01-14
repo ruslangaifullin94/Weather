@@ -32,7 +32,7 @@ final class PageViewController: NiblessViewController {
             $0.numberOfPages = viewControllers.count
             $0.setIndicatorImage(UIImage(systemName: "location.fill"), forPage: 0)
             $0.pageIndicatorTintColor = .systemGray3
-            $0.currentPageIndicatorTintColor = .black
+            $0.currentPageIndicatorTintColor = .mainText
         }
     
     private var searchBarContainer = UIView()
@@ -47,7 +47,7 @@ final class PageViewController: NiblessViewController {
         .with {
             $0.searchBarStyle = .minimal
             $0.searchTextField.attributedPlaceholder = NSMutableAttributedString {
-                AttributedText("search")
+                AttributedText("UI.Search.Title".localized)
                     .font(.rubik(size: 14, weight: .regular))
                     .foregroundColor(.secondText)
             }
@@ -68,7 +68,6 @@ final class PageViewController: NiblessViewController {
     }
     
     private func setupBarItem() {
-//        navigationItem.searchController = searchController
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .done, target: self, action: #selector(didTapAddButton))
     }
     
@@ -81,7 +80,6 @@ final class PageViewController: NiblessViewController {
                     pageViewController.setViewControllers([firstViewConroller], direction: .forward, animated: false)
                 }
             case .updatePage(let numberOfPage, let title):
-//                pageViewController.setViewControllers([], direction: .forward, animated: true)
                 navigationController?.navigationBar.isHidden = false
                 searchBarContainer.isHidden = true
                 pageControl.numberOfPages = numberOfPage

@@ -19,6 +19,8 @@ final class HomeViewModel {
     private var weatherApiService: WeatherApiServiceProtocol
     private var userLocation: UserLocation
     private var forCurrentLocation: Bool
+    private var city: City?
+    weak var delegate: PageViewModelDelegate?
     
     @Published var state: State = .loading
     
@@ -41,6 +43,8 @@ final class HomeViewModel {
                 do {
                     let city = try await weatherApiService.getWeatherCurrentLocation()
                     state = .loaded(city: city)
+                    self.city = city
+                    delegate?.updateTitle(title: city.name)
                 } catch {
                     state = .error(error: error.localizedDescription)
                 }
@@ -52,6 +56,8 @@ final class HomeViewModel {
                 do {
                     let city = try await weatherApiService.getWeather(for: userLocation)
                     state = .loaded(city: city)
+                    self.city = city
+                    delegate?.updateTitle(title: city.name)
                 } catch {
                     state = .error(error: error.localizedDescription)
                 }
@@ -63,5 +69,13 @@ final class HomeViewModel {
 extension HomeViewModel {
     func refresh() {
         getWeather(userLocation: userLocation)
+    }
+    
+    func didSelectHourlyWeather() {
+        delegate?.didSelectHourlyWeather(model: city)
+    }
+    
+    func didSelectDaysWeather() {
+        delegate?.didSelectDaysWeather(model: city)
     }
 }

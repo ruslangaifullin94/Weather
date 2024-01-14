@@ -42,8 +42,7 @@ final class WeatherDayCell: UICollectionViewCell {
     }
     
     private func setupView() {
-        makeRoundCorners([.layerMaxXMinYCorner,.layerMaxXMaxYCorner,.layerMinXMaxYCorner,.layerMinXMinYCorner],
-                         radius: LayoutConstants.smallRadius)
+        makeRoundCorners(.all, radius: LayoutConstants.smallRadius)
         addSubviews(iconView, precLabel, conditionLabel, tempLabel, dateLabel)
         
         iconView.snp.makeConstraints {
