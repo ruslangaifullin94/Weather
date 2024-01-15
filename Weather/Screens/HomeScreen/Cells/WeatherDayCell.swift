@@ -25,7 +25,7 @@ final class WeatherDayCell: UICollectionViewCell {
         .withTextColor("mainColor")
     
     private let tempLabel = UILabel()
-        .navTitle
+        .text4
         .with(\.textColor, setTo: .black)
     
     private let iconView = UIImageView()

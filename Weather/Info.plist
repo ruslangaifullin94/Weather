@@ -7,10 +7,6 @@
 		<string>Rubik-Medium.ttf</string>
 		<string>Rubik-Regular.ttf</string>
 	</array>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>please location</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>location</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

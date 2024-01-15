@@ -130,17 +130,18 @@ struct DayWeather: Hashable {
     let windDir: String?
     let pressureMm: Double?
     let pressurePa: Double?
-    let humidity: Double
+    let humidity: Int
     let soilTemp: Double?
     let soilMoisture, precMm: Double?
-    let precProb, precPeriod: Double?
+    let precProb: Int?
+    let precPeriod: Double?
     let cloudness: Double
     let precType: Double?
     let precStrength: Double?
     let icon: URL
     let condition: String
-    let uvIndex: Double?
-    let feelsLike: Int?
+    let uvIndex: Int?
+    let feelsLike: Int
     let daytime: PurpleDaytime
     let polar: Bool
     let freshSnowMm: Double?
@@ -156,19 +157,19 @@ struct DayWeather: Hashable {
          windDir: String?,
          pressureMm: Double?,
          pressurePa: Double?,
-         humidity: Double,
+         humidity: Int,
          soilTemp: Double?,
          soilMoisture: Double?,
          precMm: Double?,
-         precProb: Double?,
+         precProb: Int?,
          precPeriod: Double?,
          cloudness: Double,
          precType: Double?,
          precStrength: Double?,
          icon: URL,
          condition: String,
-         uvIndex: Double?,
-         feelsLike: Int?,
+         uvIndex: Int?,
+         feelsLike: Int,
          daytime: PurpleDaytime,
          polar: Bool,
          freshSnowMm: Double?,

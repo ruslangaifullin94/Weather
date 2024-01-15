@@ -493,7 +493,7 @@
 			};
 			buildConfigurationList = 5AD359542AD2CAC3003CB656 /* Build configuration list for PBXProject "Weather" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = ru;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -744,6 +744,8 @@
 				DEVELOPMENT_TEAM = N4T632DPGK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = location;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "please location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
@@ -774,6 +776,8 @@
 				DEVELOPMENT_TEAM = N4T632DPGK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = location;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "please location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;

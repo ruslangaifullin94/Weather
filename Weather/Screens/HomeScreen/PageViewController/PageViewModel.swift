@@ -61,6 +61,7 @@ extension PageViewModel {
     func addLocation(location: UserLocation, title: String) {
         saveLocations(userLocation: location)
         let viewModel = HomeViewModel(weatherApiService: weatherApiService, userLocation: location, forCurrentLocation: false)
+        viewModel.delegate = self
         let viewController = HomeViewController(viewModel: viewModel)
         viewControllers.append(viewController)
         state = .updatePage(numberOfPage: viewControllers.count, title: title)

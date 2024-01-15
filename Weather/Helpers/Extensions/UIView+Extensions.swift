@@ -52,4 +52,16 @@ extension UIView {
     func withBackgroundView(_ insets: CGFloat) -> UIView {
         withBackgroundView(UIEdgeInsets(floatLiteral: insets))
     }
+    
+    func withHighHuggingPriority() -> Self {
+        self
+            .with { $0.setContentHuggingPriority(.required, for: .vertical) }
+            .with { $0.setContentHuggingPriority(.required, for: .horizontal) }
+    }
+    
+    func withHighCompressionPriority() -> Self {
+        self
+            .with { $0.setContentCompressionResistancePriority(.required, for: .vertical) }
+            .with { $0.setContentCompressionResistancePriority(.required, for: .horizontal) }
+    }
 }

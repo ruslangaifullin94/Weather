@@ -23,9 +23,6 @@ final class DayViewModel {
     }
     
     private func loadedState() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-            guard let self else { return }
-            state = .loaded(city: forecast)
-        }
+        state = .loaded(city: forecast)
     }
 }

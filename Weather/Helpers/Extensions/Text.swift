@@ -107,7 +107,7 @@ extension UILabel {
             .with(\.font, setTo: .rubik(size: 36, weight: .medium))
     }
     
-    var navTitle: UILabel {
+    var text4: UILabel {
         baseStyle
             .withLineHeight(22)
             .with(\.font, setTo: .rubik(size: 18, weight: .medium))

@@ -9,7 +9,7 @@ import UIKit
 
 final class DateCell: UICollectionViewCell {
     private var dateLabel = UILabel()
-        .navTitle
+        .text4
     
     override init(frame: CGRect) {
         super.init(frame: .zero)

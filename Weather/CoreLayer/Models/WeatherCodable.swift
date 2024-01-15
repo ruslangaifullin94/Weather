@@ -94,17 +94,18 @@ struct Day: Codable {
     let windDir: String?
     let pressureMm: Double?
     let pressurePa: Double?
-    let humidity: Double
+    let humidity: Int
     let soilTemp: Double?
     let soilMoisture, precMm: Double?
-    let precProb, precPeriod: Double?
+    let precProb: Int
+    let precPeriod: Double?
     let cloudness: Double
     let precType: Double?
     let precStrength: Double?
     let icon: String
     let condition: String
-    let uvIndex: Double?
-    let feelsLike: Int?
+    let uvIndex: Int?
+    let feelsLike: Int
     let daytime: PurpleDaytime
     let polar: Bool
     let freshSnowMm: Double?
