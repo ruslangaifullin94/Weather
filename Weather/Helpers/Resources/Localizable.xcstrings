@@ -1,6 +1,91 @@
 {
   "sourceLanguage" : "ru",
   "strings" : {
+    "UI.Onboarding.Button.Dont" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NO, I'LL ADD LOCATIONS"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "НЕТ, Я БУДУ ДОБАВЛЯТЬ ЛОКАЦИИ"
+          }
+        }
+      }
+    },
+    "UI.Onboarding.Button.Ok" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "USE THE LOCATION OF THE DEVICE"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ИСПОЛЬЗОВАТЬ МЕСТОПОЛОЖЕНИЕ  УСТРОЙСТВА"
+          }
+        }
+      }
+    },
+    "UI.Onboarding.description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To get more accurate weather forecasts while driving or traveling"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтобы получить более точные прогнозы погоды во время движения или путешествия"
+          }
+        }
+      }
+    },
+    "UI.Onboarding.main" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allow the Weather app to use your device's location data"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разрешить приложению  Weather использовать данные \nо местоположении вашего устройства "
+          }
+        }
+      }
+    },
+    "UI.Onboarding.settings" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can change your choice at any time from the application menu"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы можете изменить свой выбор в любое время из меню приложения"
+          }
+        }
+      }
+    },
     "UI.Search.Title" : {
       "extractionState" : "manual",
       "localizations" : {

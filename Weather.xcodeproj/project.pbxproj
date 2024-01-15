@@ -64,6 +64,10 @@
 		5AC971DA2B540A820035ED95 /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC971D92B540A820035ED95 /* DayCell.swift */; };
 		5AC971DC2B5415080035ED95 /* CACornerMask+EXtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC971DB2B5415080035ED95 /* CACornerMask+EXtension.swift */; };
 		5AC971DE2B5416A60035ED95 /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC971DD2B5416A60035ED95 /* UIStackView+Extension.swift */; };
+		5AC971E12B552D1B0035ED95 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC971E02B552D1B0035ED95 /* OnboardingViewController.swift */; };
+		5AC971E32B552D2D0035ED95 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC971E22B552D2D0035ED95 /* OnboardingViewModel.swift */; };
+		5AC971E52B55358B0035ED95 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC971E42B55358B0035ED95 /* OnboardingCoordinator.swift */; };
+		5AC971E82B555B730035ED95 /* EmptyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC971E72B555B730035ED95 /* EmptyViewController.swift */; };
 		5AD3595D2AD2CAC3003CB656 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3595C2AD2CAC3003CB656 /* AppDelegate.swift */; };
 		5AD3595F2AD2CAC3003CB656 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD3595E2AD2CAC3003CB656 /* SceneDelegate.swift */; };
 		5AD359662AD2CAC4003CB656 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AD359652AD2CAC4003CB656 /* Assets.xcassets */; };
@@ -155,6 +159,10 @@
 		5AC971D92B540A820035ED95 /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
 		5AC971DB2B5415080035ED95 /* CACornerMask+EXtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CACornerMask+EXtension.swift"; sourceTree = "<group>"; };
 		5AC971DD2B5416A60035ED95 /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
+		5AC971E02B552D1B0035ED95 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		5AC971E22B552D2D0035ED95 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		5AC971E42B55358B0035ED95 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		5AC971E72B555B730035ED95 /* EmptyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyViewController.swift; sourceTree = "<group>"; };
 		5AD359592AD2CAC3003CB656 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AD3595C2AD2CAC3003CB656 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AD3595E2AD2CAC3003CB656 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -357,6 +365,23 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		5AC971DF2B552D040035ED95 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				5AC971E02B552D1B0035ED95 /* OnboardingViewController.swift */,
+				5AC971E22B552D2D0035ED95 /* OnboardingViewModel.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		5AC971E62B555B4D0035ED95 /* EmptyViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5AC971E72B555B730035ED95 /* EmptyViewController.swift */,
+			);
+			path = EmptyViewController;
+			sourceTree = "<group>";
+		};
 		5AD359502AD2CAC3003CB656 = {
 			isa = PBXGroup;
 			children = (
@@ -403,6 +428,7 @@
 				5AD359BC2AD2CE24003CB656 /* CoordinatorProtocol.swift */,
 				5AD359BE2AD2D0FB003CB656 /* MainCoordinator.swift */,
 				5A3A46E92AEC589200C13EC1 /* HomeScreenCoordinator.swift */,
+				5AC971E42B55358B0035ED95 /* OnboardingCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -410,6 +436,7 @@
 		5AD359722AD2CB38003CB656 /* HomeScreen */ = {
 			isa = PBXGroup;
 			children = (
+				5AC971E62B555B4D0035ED95 /* EmptyViewController */,
 				5AC905232B501BF700906ECD /* PageViewController */,
 				5A6EDDBB2B3DD65900644307 /* Search */,
 				5A3433BE2B3B4373001A6BED /* Cells */,
@@ -421,6 +448,7 @@
 		5AD359752AD2CB71003CB656 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				5AC971DF2B552D040035ED95 /* Onboarding */,
 				5AC971CF2B53D28F0035ED95 /* DaysWeather */,
 				5AD359722AD2CB38003CB656 /* HomeScreen */,
 			);
@@ -540,6 +568,7 @@
 				5A6EDDCA2B3E017C00644307 /* SearchLocation.swift in Sources */,
 				5AC905332B52D2B700906ECD /* ShimmeringView.swift in Sources */,
 				5A3A46FB2AEC76ED00C13EC1 /* LocationErrors.swift in Sources */,
+				5AC971E12B552D1B0035ED95 /* OnboardingViewController.swift in Sources */,
 				5A3A46F52AEC726000C13EC1 /* LocationManager.swift in Sources */,
 				5AC905762B52EE5B00906ECD /* SVG.swift in Sources */,
 				5A3433BD2B3A21E5001A6BED /* WeatherCodable.swift in Sources */,
@@ -547,6 +576,7 @@
 				5AC971D52B53D8E80035ED95 /* LayoutBuilderDayController.swift in Sources */,
 				5A3433C62B3C1089001A6BED /* NiblessViewController.swift in Sources */,
 				5AC905692B52EE4F00906ECD /* WeatherApiService.swift in Sources */,
+				5AC971E52B55358B0035ED95 /* OnboardingCoordinator.swift in Sources */,
 				5A6EDDC02B3DD6F300644307 /* SearchResults.swift in Sources */,
 				5AC971D82B5408E80035ED95 /* DateCell.swift in Sources */,
 				5AC905202B4F3BEA00906ECD /* UIImageView+Extension.swift in Sources */,
@@ -558,11 +588,13 @@
 				5A6EDDCE2B3E18FA00644307 /* HomeViewModel.swift in Sources */,
 				5AD359BD2AD2CE24003CB656 /* CoordinatorProtocol.swift in Sources */,
 				5AC971D32B53D3BB0035ED95 /* DayViewModel.swift in Sources */,
+				5AC971E32B552D2D0035ED95 /* OnboardingViewModel.swift in Sources */,
 				5A3433AA2B3A0B77001A6BED /* UIView+Extensions.swift in Sources */,
 				5AD359BF2AD2D0FB003CB656 /* MainCoordinator.swift in Sources */,
 				5A6EDDC82B3DF8D300644307 /* CollectionCell.swift in Sources */,
 				5AC971DE2B5416A60035ED95 /* UIStackView+Extension.swift in Sources */,
 				5A3A46F12AEC64FA00C13EC1 /* Strings+Extension.swift in Sources */,
+				5AC971E82B555B730035ED95 /* EmptyViewController.swift in Sources */,
 				5A3433C22B3C0F27001A6BED /* UICollectionView+register.swift in Sources */,
 				5A3433CA2B3C1972001A6BED /* LayoutBuilderHomeViewController.swift in Sources */,
 				5A3433D22B3C3EE3001A6BED /* WeatherDayCell.swift in Sources */,

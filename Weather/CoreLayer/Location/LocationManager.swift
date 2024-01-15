@@ -31,9 +31,11 @@ final class CurrentLocationManager: NSObject {
     
     private var locationManager: CLLocationManager
     
+    @Published var accessLocation: Bool = false
+    
     @Published var location: CLLocation = CLLocation()
         
-    private func requestPermission() {
+    func requestPermission() {
         locationManager.requestWhenInUseAuthorization()
     }
     
@@ -41,11 +43,10 @@ final class CurrentLocationManager: NSObject {
         self.locationManager = CLLocationManager()
         super.init()
         locationManager.delegate = self
-        getLocation()
+//        getLocation()
     }
     
     func getLocation() {
-        requestPermission()
         locationManager.requestLocation()
         locationManager.startUpdatingLocation()
     }
@@ -57,16 +58,19 @@ extension CurrentLocationManager: CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
-            case .notDetermined:
-                requestPermission()
-            case .restricted:
-                print("Запрещено через родительский контроль")
-            case .denied:
-                print("Вы запретили доступ к геолокации")
-            case .authorizedAlways,.authorizedWhenInUse:
-                manager.requestLocation()
-            @unknown default:
-                print("Не известный этап проверки")
+        case .notDetermined:
+            manager.requestWhenInUseAuthorization()
+        case .restricted:
+            print("Запрещено через родительский контроль")
+            accessLocation = false
+        case .denied:
+            print("Вы запретили доступ к геолокации")
+            accessLocation = false
+        case .authorizedAlways,.authorizedWhenInUse:
+            manager.requestLocation()
+            accessLocation = true
+        @unknown default:
+            print("Не известный этап проверки")
         }
     }
     

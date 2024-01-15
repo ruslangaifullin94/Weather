@@ -26,8 +26,8 @@ final class WeatherApiService {
     
     
     init(locationManager: LocationManagerProtocol,
-                networkManager: NetworkManagerProtocol,
-                mapper: CoreMapperProtocol) {
+         networkManager: NetworkManagerProtocol,
+         mapper: CoreMapperProtocol) {
         self.locationManager = locationManager
         self.networkManager = networkManager
         self.mapper = mapper

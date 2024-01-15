@@ -35,7 +35,7 @@ final class WeatherTimeCell: UICollectionViewCell {
     }
     
     private func setupView() {
-        makeRoundCorners(.all, radius: 20)
+        makeRoundCorners(.all, radius: LayoutConstants.bigRadius)
         addSubviews(tempLabel, timeLabel, iconView)
         
         timeLabel.snp.makeConstraints {

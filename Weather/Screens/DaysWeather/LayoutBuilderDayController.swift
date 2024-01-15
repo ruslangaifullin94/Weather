@@ -76,5 +76,4 @@ struct LayoutBuilderDayController {
 private let widthDimensionDate = 88.0
 private let heightDimensionDate = 36.0
 
-private let widthDimensionDay = 344.0
 private let heightDimensionDay = 341.0

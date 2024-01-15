@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 protocol HomeScreenCoordinatorProtocol: AnyObject {
     func didTapHourlyWeather(model: City)
@@ -15,6 +16,21 @@ protocol HomeScreenCoordinatorProtocol: AnyObject {
 final class HomeScreenCoordinator: DefaultCoordinator {
     
     let locationManager = LocationManager()
+    private var accessLocation: Bool = false
+    private var subscription = Set<AnyCancellable>()
+    
+    override init(navigationController: UINavigationController, parentCoordinator: AnyObject?) {
+        super.init(navigationController: navigationController, parentCoordinator: parentCoordinator)
+        checkAccessLocation()
+    }
+    
+    func checkAccessLocation() {
+        CurrentLocationManager.shared.requestPermission()
+        CurrentLocationManager.shared.$accessLocation
+            .sink { [weak self] access in
+                self?.accessLocation = access
+            }.store(in: &subscription)
+    }
     
     override func createViewController() -> UIViewController {
         
@@ -23,11 +39,8 @@ final class HomeScreenCoordinator: DefaultCoordinator {
         let weatherApiService = WeatherApiService(locationManager: locationManager, 
                                                   networkManager: networkManager,
                                                   mapper: mapper)
-        var userLocation = CoreDataHandler.shared.fetchAllUserLocations()
-        if userLocation.count == 0 {
-            userLocation.append(UserLocation(longitude: 0, latitude: 0))
-        }
-        let pageViewModel = PageViewModel(locations: userLocation, weatherApiService: weatherApiService, coordinator: self)
+        let userLocation = CoreDataHandler.shared.fetchAllUserLocations()
+        let pageViewModel = PageViewModel(locations: userLocation, weatherApiService: weatherApiService, coordinator: self, accessLocation: accessLocation)
         let viewController = PageViewController(viewModel: pageViewModel)
         let navController = UINavigationController(rootViewController: viewController)
         self.navigationController = navController

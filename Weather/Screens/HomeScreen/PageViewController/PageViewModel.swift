@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UIKit
 
 protocol PageViewModelDelegate: AnyObject {
     func updateTitle(title: String)
@@ -29,26 +30,48 @@ final class PageViewModel {
     
     private weak var coordinator: HomeScreenCoordinatorProtocol?
     private var locations: [UserLocation]
+    private var accessLocation: Bool
     
     var weatherApiService: WeatherApiServiceProtocol
     
-    lazy var viewControllers: [HomeViewController] = []
+    lazy var viewControllers: [UIViewController] = []
     
     init(locations: [UserLocation],
          weatherApiService: WeatherApiServiceProtocol,
-         coordinator: HomeScreenCoordinatorProtocol?) 
+         coordinator: HomeScreenCoordinatorProtocol?,
+         accessLocation: Bool)
     {
         self.locations = locations
         self.weatherApiService = weatherApiService
         self.coordinator = coordinator
-        self.viewControllers = locations.enumerated().map { index, location in
-            let forCurrentLocation = index == 0
-            let viewModel = HomeViewModel(weatherApiService: weatherApiService, 
-                                          userLocation: location,
-                                          forCurrentLocation: forCurrentLocation)
-            viewModel.delegate = self
-            let viewController = HomeViewController(viewModel: viewModel)
-            return viewController
+        self.accessLocation = accessLocation
+        self.viewControllers = setViewControllers()
+    }
+    
+    private func setViewControllers() -> [UIViewController] {
+        if accessLocation {
+            if locations.isEmpty {
+                let userLocation = UserLocation(longitude: 0, latitude: 0)
+                let viewModel = HomeViewModel(weatherApiService: weatherApiService,
+                                              userLocation: userLocation,
+                                              forCurrentLocation: true)
+                viewModel.delegate = self
+                let viewController = HomeViewController(viewModel: viewModel)
+                return [viewController]
+            } else {
+                return locations.enumerated().map { index, location in
+                    let forCurrentLocation = index == 0
+                    let viewModel = HomeViewModel(weatherApiService: weatherApiService,
+                                                  userLocation: location,
+                                                  forCurrentLocation: forCurrentLocation)
+                    viewModel.delegate = self
+                    let viewController = HomeViewController(viewModel: viewModel)
+                    return viewController
+                }
+            }
+        } else {
+            let emptyViewController = EmptyViewController()
+            return [emptyViewController]
         }
     }
     
@@ -63,8 +86,13 @@ extension PageViewModel {
         let viewModel = HomeViewModel(weatherApiService: weatherApiService, userLocation: location, forCurrentLocation: false)
         viewModel.delegate = self
         let viewController = HomeViewController(viewModel: viewModel)
-        viewControllers.append(viewController)
-        state = .updatePage(numberOfPage: viewControllers.count, title: title)
+        if accessLocation {
+            viewControllers.append(viewController)
+            state = .updatePage(numberOfPage: viewControllers.count, title: title)
+        } else {
+            viewControllers.append(viewController)
+            state = .updatePage(numberOfPage: viewControllers.count, title: title)
+        }
     }
     
     func didTapAddButton() {

@@ -11,7 +11,6 @@ class NiblessViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         navigationItem.backButtonTitle = "UI.Universal.Title.back".localized
-        view.backgroundColor = .systemBackground
     }
     
     @available(*, unavailable)

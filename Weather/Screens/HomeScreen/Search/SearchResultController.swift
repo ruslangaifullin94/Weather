@@ -81,6 +81,7 @@ final class SearchResultController: NiblessViewController {
     }
     
     private func setupView() {
+        view.backgroundColor = .white
         view.addSubview(collectionView)
         
         collectionView.snp.makeConstraints {

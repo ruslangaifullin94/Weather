@@ -78,6 +78,7 @@ class HomeViewController: NiblessViewController {
     }
     
     private func setupView() {
+        view.backgroundColor = .white
         view.addSubviews(collectionView, shimmer)
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()

@@ -76,6 +76,7 @@ final class DayViewController: NiblessViewController {
     }
     
     private func setupView() {
+        view.backgroundColor = .white
         view.addSubview(collectionView)
         
         collectionView.snp.makeConstraints {
@@ -113,16 +114,28 @@ final class DayViewController: NiblessViewController {
 }
 
 extension DayViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        guard let cell = dataSource.itemIdentifier(for: indexPath) else { return false }
+        switch cell {
+        case .day:
+            return true
+        case .forecast:
+            return false
+        case .moon:
+            return false
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         collectionView.cellForItem(at: indexPath)?.backgroundColor = .clear
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.cellForItem(at: indexPath)?.backgroundColor = .main
         guard let cell = dataSource.itemIdentifier(for: indexPath) else { return }
         switch cell {
         case .day(let day):
+            collectionView.cellForItem(at: indexPath)?.backgroundColor = .main
             var snapshot = dataSource.snapshot()
             snapshot.deleteSections([.forecasts])
             snapshot.appendSections([.forecasts])

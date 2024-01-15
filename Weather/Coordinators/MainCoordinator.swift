@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol MainCoordinatorParentProtocol: AnyObject {
-    func switchFlow()
+    func switchToNextFlow(from currentCoodinator: CoordinatorProtocol)
 }
 
 final class MainCoordinator {
@@ -19,6 +19,7 @@ final class MainCoordinator {
     
     private var rootViewController: UIViewController
     private var childsCoordinators: [CoordinatorProtocol] = []
+    private var firstLaunch: Bool = true
     
     // MARK: - Initialise
     
@@ -36,11 +37,11 @@ final class MainCoordinator {
     }
     
     private func setFlow(to newViewController: UIViewController) {
-         rootViewController.addChild(newViewController)
-         newViewController.view.frame = rootViewController.view.frame
-         rootViewController.view.addSubview(newViewController.view)
-         newViewController.didMove(toParent: rootViewController)
-     }
+        rootViewController.addChild(newViewController)
+        newViewController.view.frame = rootViewController.view.frame
+        rootViewController.view.addSubview(newViewController.view)
+        newViewController.didMove(toParent: rootViewController)
+    }
     
     private func homeScreenCoordinator() -> CoordinatorProtocol {
         let homeScreenCoordinator = HomeScreenCoordinator(navigationController: UINavigationController(),
@@ -48,26 +49,61 @@ final class MainCoordinator {
         return homeScreenCoordinator
     }
     
-    private func setLoginCoordinator() {
+    private func setOnboardingCoordinator() -> CoordinatorProtocol {
+        let onboardingCoordinator = OnboardingCoordinator(navigationController: UINavigationController(),
+                                                          parentCoordinator: self)
         
+        return onboardingCoordinator
     }
     
+    private func switchFlow(to newViewController: UIViewController) {
+        rootViewController.children[0].willMove(toParent: nil)
+        rootViewController.children[0].navigationController?.isNavigationBarHidden = true
+        rootViewController.addChild(newViewController)
+        newViewController.view.frame = rootViewController.view.bounds
+        
+        rootViewController.transition(
+            from: rootViewController.children[0],
+            to: newViewController,
+            duration: 0.6,
+            options: [.transitionFlipFromRight],
+            animations: {}
+        ) {_ in
+            self.rootViewController.children[0].removeFromParent()
+            newViewController.didMove(toParent: self.rootViewController)
+        }
+    }
+    
+    private func switchCoordinators(from oldCoordinator: CoordinatorProtocol, to newCoordinator: CoordinatorProtocol) {
+        addChildCoordinator(coordinator: newCoordinator)
+        switchFlow(to: newCoordinator.start())
+        removeChildCoordinator(coordinator: oldCoordinator)
+    }
 }
 
 extension MainCoordinator: MainCoordinatorParentProtocol {
-    func switchFlow() {
-        ()
-    }
+    func switchToNextFlow(from currentCoodinator: CoordinatorProtocol) {
+            switch currentCoodinator {
+            case let oldCoordinator as OnboardingCoordinator:
+                let newCoordinator = self.homeScreenCoordinator()
+                self.switchCoordinators(from: oldCoordinator, to: newCoordinator)
+
+            default:
+                print("Ошибка! func switchToNextFlow in MainCoordinator")
+            }
+        }
 }
 
 
 extension MainCoordinator: CoordinatorProtocol {
     
     func start() -> UIViewController {
+        firstLaunch = UserDefaults.standard.bool(forKey: "launchAppBefore")
         var coordinator: CoordinatorProtocol
-        coordinator = homeScreenCoordinator()
+        coordinator = firstLaunch ? homeScreenCoordinator() : setOnboardingCoordinator()
         addChildCoordinator(coordinator: coordinator)
-        return coordinator.start()
+        setFlow(to: coordinator.start())
+        return rootViewController
     }
     
 }

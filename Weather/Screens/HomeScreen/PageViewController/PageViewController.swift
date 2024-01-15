@@ -104,6 +104,7 @@ final class PageViewController: NiblessViewController {
     }
     
     private func setupView() {
+        view.backgroundColor = .white
         view.addSubviews(pageControl, pageViewController.view, searchBarContainer)
         searchBarContainer.addSubview(searchBar)
         

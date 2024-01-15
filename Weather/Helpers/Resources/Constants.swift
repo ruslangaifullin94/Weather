@@ -23,6 +23,10 @@ enum LayoutConstants {
     static let singleOffset = 16.0
     /// 24 pt
     static let oneAndHalfOffset = 24.0
-    /// 5pt radius
+    /// 5 pt radius
     static let smallRadius = 5.0
+    /// 10 pt radius
+    static let mediumRadius = 10.0
+    /// 20 pt radius
+    static let bigRadius = 20.0
 }
