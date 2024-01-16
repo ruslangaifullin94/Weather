@@ -29,9 +29,10 @@ extension OnboardingCoordinator: CoordinatorProtocol {
 extension OnboardingCoordinator: OnboardingCoordinatorProtocol {
     func switchFlow(accessLocation: Bool) {
         if accessLocation {
-            CurrentLocationManager.shared.requestPermission()
+            CurrentLocationManager.shared.requestPermission { [parentCoordinator] in
                 UserDefaults.standard.set(true, forKey: "launchAppBefore")
-            (self.parentCoordinator as? MainCoordinatorParentProtocol)?.switchToNextFlow(from: self)
+                (parentCoordinator as? MainCoordinatorParentProtocol)?.switchToNextFlow(from: self)
+            }
         } else {
             UserDefaults.standard.set(true, forKey: "launchAppBefore")
             (parentCoordinator as? MainCoordinatorParentProtocol)?.switchToNextFlow(from: self)

@@ -14,15 +14,15 @@ final class WeatherDayCell: UICollectionViewCell {
     
     private let conditionLabel = UILabel()
         .text1
-        .withTextColor("mainTextColor")
+        .withTextColor(.mainText)
     
     private let dateLabel = UILabel()
         .text1
-        .withTextColor("secondTextColor")
+        .withTextColor(.secondText)
     
     private let precLabel = UILabel()
         .text2
-        .withTextColor("mainColor")
+        .withTextColor(.main)
     
     private let tempLabel = UILabel()
         .text4

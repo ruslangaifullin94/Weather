@@ -20,7 +20,7 @@ enum EnterPoint {
             return urlRequest
         case .searchCity(let text):
             let apiGeo = "f4cbb72b-8afe-44d9-9dda-e7f000cda135"
-            var urlRequest = URLRequest(url: URL(string: "https://geocode-maps.yandex.ru/1.x/?apikey=\(apiGeo)&geocode=\(text)&format=json")!)
+            let urlRequest = URLRequest(url: URL(string: "https://geocode-maps.yandex.ru/1.x/?apikey=\(apiGeo)&geocode=\(text)&format=json")!)
             return urlRequest
         }
         

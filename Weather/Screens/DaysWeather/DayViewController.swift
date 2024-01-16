@@ -62,6 +62,7 @@ final class DayViewController: NiblessViewController {
         bindingModel()
     }
     
+
     private func bindingModel() {
         viewModel.$state
             .sink { [weak self] state in
@@ -71,6 +72,7 @@ final class DayViewController: NiblessViewController {
                     ()
                 case .loaded(let city):
                     makeSnapshot(city: city)
+                    navigationItem.title = city.name
                 }
             }.store(in: &subscriptions)
     }

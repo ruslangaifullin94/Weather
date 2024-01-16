@@ -10,7 +10,6 @@ import Combine
 
 protocol WeatherApiServiceProtocol {
     func getCities(for city: String) async throws -> [CitySearchModel]
-    func getCurrentLocation()
     func getWeatherCurrentLocation() async throws -> City
     func getWeather(for userLocation: UserLocation) async throws -> City
 }
@@ -31,7 +30,15 @@ final class WeatherApiService {
         self.locationManager = locationManager
         self.networkManager = networkManager
         self.mapper = mapper
-        getCurrentLocation()
+    }
+    
+    private func getCurrentLocation() {
+        CurrentLocationManager.shared.$location
+            .sink { [unowned self] location in
+                let userLocation = UserLocation(longitude: location.coordinate.longitude,
+                                                latitude: location.coordinate.latitude)
+                self.userLocation = userLocation
+            }.store(in: &subscriptions)
     }
     
 }
@@ -51,17 +58,9 @@ extension WeatherApiService: WeatherApiServiceProtocol {
         let city = City(cityInfo: weather)
         return city
     }
-    
-    func getCurrentLocation() {
-        CurrentLocationManager.shared.$location
-            .sink { [unowned self] location in
-                let userLocation = UserLocation(longitude: location.coordinate.longitude,
-                                                latitude: location.coordinate.latitude)
-                self.userLocation = userLocation
-            }.store(in: &subscriptions)
-    }
 
     func getWeatherCurrentLocation() async throws -> City {
+        getCurrentLocation()
         locationManager.requestLocation()
         guard let userLocation else {
             throw LocationErrors.locationNotFound

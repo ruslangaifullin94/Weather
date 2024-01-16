@@ -21,7 +21,7 @@ final class PageViewModel {
         case initial
         case loaded(title: String)
         case showSearch
-        case updatePage(numberOfPage: Int, title: String)
+        case updatePage(numberOfPage: Int, title: String, accessLocation: Bool)
         case swipePage(currentIndex: Int)
         case cancelSearch
     }
@@ -59,6 +59,8 @@ final class PageViewModel {
                 let viewController = HomeViewController(viewModel: viewModel)
                 return [viewController]
             } else {
+                let userLocation = UserLocation(longitude: 0, latitude: 0)
+                locations.insert(userLocation, at: 0)
                 return locations.enumerated().map { index, location in
                     let forCurrentLocation = index == 0
                     let viewModel = HomeViewModel(weatherApiService: weatherApiService,
@@ -70,8 +72,19 @@ final class PageViewModel {
                 }
             }
         } else {
-            let emptyViewController = EmptyViewController()
-            return [emptyViewController]
+            if locations.isEmpty {
+                let emptyViewController = EmptyViewController()
+                return [emptyViewController]
+            } else {
+                return locations.enumerated().map { index, location in
+                    let viewModel = HomeViewModel(weatherApiService: weatherApiService,
+                                                  userLocation: location,
+                                                  forCurrentLocation: false)
+                    viewModel.delegate = self
+                    let viewController = HomeViewController(viewModel: viewModel)
+                    return viewController
+                }
+            }
         }
     }
     
@@ -88,10 +101,10 @@ extension PageViewModel {
         let viewController = HomeViewController(viewModel: viewModel)
         if accessLocation {
             viewControllers.append(viewController)
-            state = .updatePage(numberOfPage: viewControllers.count, title: title)
+            state = .updatePage(numberOfPage: viewControllers.count, title: title, accessLocation: accessLocation)
         } else {
             viewControllers.append(viewController)
-            state = .updatePage(numberOfPage: viewControllers.count, title: title)
+            state = .updatePage(numberOfPage: viewControllers.count, title: title, accessLocation: accessLocation)
         }
     }
     

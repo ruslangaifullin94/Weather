@@ -284,8 +284,10 @@ struct WeatherHour: Hashable {
     let precStrength: Double
     let cloudness: Double
     let icon: URL
+    let precProb: Int
+    let humidity: Int
     
-    init(hour: String, temp: Int, feelsLike: Int, condition: String, windSpeed: Double, precStrength: Double, cloudness: Double, icon: URL) {
+    init(hour: String, temp: Int, feelsLike: Int, condition: String, windSpeed: Double, precStrength: Double, cloudness: Double, icon: URL, precProb: Int, humidity: Int) {
         self.hour = hour
         self.temp = temp
         self.feelsLike = feelsLike
@@ -294,6 +296,8 @@ struct WeatherHour: Hashable {
         self.precStrength = precStrength
         self.cloudness = cloudness
         self.icon = icon
+        self.precProb = precProb
+        self.humidity = humidity
     }
 }
 
@@ -307,7 +311,8 @@ extension WeatherHour {
         self.precStrength = weatherHour.precStrength
         self.cloudness = weatherHour.cloudness
         self.icon = URL(string: "https://yastatic.net/weather/i/icons/funky/dark/\(weatherHour.icon).svg")!
-
+        self.precProb = weatherHour.precProb
+        self.humidity = weatherHour.humidity
     }
 }
 

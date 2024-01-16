@@ -71,10 +71,12 @@ struct Hour: Codable {
     let isThunder: Bool
     let windDir: String?
     let windSpeed, windGust: Double?
-    let pressureMm, pressurePa, humidity, uvIndex: Double?
+    let pressureMm, pressurePa, uvIndex: Double?
+    let humidity: Int
     let soilTemp: Double?
     let soilMoisture, precMm: Double?
-    let precPeriod, precProb: Double
+    let precPeriod: Double
+    let precProb: Int
 }
 
 // MARK: - Parts

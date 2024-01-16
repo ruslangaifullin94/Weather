@@ -30,7 +30,6 @@ final class PageViewController: NiblessViewController {
     private lazy var pageControl = UIPageControl()
         .with {
             $0.numberOfPages = viewControllers.count
-            $0.setIndicatorImage(UIImage(systemName: "location.fill"), forPage: 0)
             $0.pageIndicatorTintColor = .systemGray3
             $0.currentPageIndicatorTintColor = .mainText
         }
@@ -79,9 +78,10 @@ final class PageViewController: NiblessViewController {
                 if let firstViewConroller = viewControllers.first {
                     pageViewController.setViewControllers([firstViewConroller], direction: .forward, animated: false)
                 }
-            case .updatePage(let numberOfPage, let title):
+            case .updatePage(let numberOfPage, let title, let accessLocation):
                 navigationController?.navigationBar.isHidden = false
                 searchBarContainer.isHidden = true
+                if accessLocation { pageControl.setIndicatorImage(UIImage(systemName: "location.fill"), forPage: 0) }
                 pageControl.numberOfPages = numberOfPage
                 pageControl.currentPage = numberOfPage - 1
                 viewControllers = viewModel.viewControllers

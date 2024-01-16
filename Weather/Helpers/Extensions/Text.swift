@@ -83,8 +83,8 @@ extension UILabel {
     }
     
     @discardableResult
-    func withTextColor(_ color: String) -> UILabel {
-        with(\.textColor, setTo: UIColor(named: color))
+    func withTextColor(_ color: UIColor) -> UILabel {
+        with(\.textColor, setTo: color)
     }
 }
 
