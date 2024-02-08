@@ -10,9 +10,19 @@ import Combine
 
 final class HourlyViewController: NiblessViewController {
     
-    typealias DataSource = UICollectionViewDiffableDataSource<Int, WeatherHour>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Int, WeatherHour>
+    enum Section {
+        case graph
+        case main
+    }
     
+    enum Cell: Hashable {
+        case graph(weather: [WeatherHour])
+        case hourly(weather: WeatherHour)
+    }
+    
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, Cell>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Cell>
+        
     private var subscriptions = Set<AnyCancellable>()
     private var viewModel: HourlyViewModel
     
@@ -28,6 +38,7 @@ final class HourlyViewController: NiblessViewController {
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         .with {
             $0.registerHeader(HeaderCell.self)
+            $0.register(GraphCell.self)
             $0.register(HourCell.self)
             $0.showsVerticalScrollIndicator = false
             $0.backgroundColor = .second
@@ -42,6 +53,7 @@ final class HourlyViewController: NiblessViewController {
         super.viewDidLoad()
         setupView()
         bindingModel()
+        viewModel.getWeather()
     }
     
     private func setupView() {
@@ -108,27 +120,41 @@ final class HourlyViewController: NiblessViewController {
     
     private func makeDataSource() -> DataSource {
         return DataSource(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
-            return collectionView
-                .dequeueCell(HourCell.self, for: indexPath)
-                .configuredCell(data: itemIdentifier)
+            switch itemIdentifier {
+            case .graph(let weather):
+                return collectionView
+                    .dequeueCell(GraphCell.self, for: indexPath)
+                    .configuredCell(data: weather)
+            case .hourly(let weather):
+                return collectionView
+                    .dequeueCell(HourCell.self, for: indexPath)
+                    .configuredCell(data: weather)
+            }
         }
     }
     
     private func makeSnapshot(city: City) {
         var snapshot = Snapshot()
-        snapshot.appendSections([0])
+        snapshot.appendSections([.graph])
+        snapshot.appendItems([.graph(weather: city.weather.forecasts[0].hours)], toSection: .graph)
+        snapshot.appendSections([.main])
         city.weather.forecasts[0].hours.forEach { hour in
-            snapshot.appendItems([hour], toSection: 0)
+            snapshot.appendItems([.hourly(weather: hour)], toSection: .main)
         }
         dataSource.apply(snapshot)
     }
     
     private func makeHeaderProvider(city: String) -> (UICollectionView, String, IndexPath) -> UICollectionReusableView? {
-        return { collectionView, kind, indexPath in
+        return { [weak self] collectionView, kind, indexPath in
             guard kind == UICollectionView.elementKindSectionHeader else { return nil }
+            let section = self?.dataSource.snapshot().sectionIdentifiers[indexPath.section]
             
             let header: HeaderCell = collectionView.dequeueHeader(for: indexPath)
-            header.title = city
+            if section == .graph {
+                header.title = "UI.HoursVC.chart".localized
+            } else {
+                header.title = city
+            }
             return header
         }
     }

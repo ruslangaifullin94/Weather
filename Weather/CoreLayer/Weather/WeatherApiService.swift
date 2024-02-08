@@ -23,6 +23,7 @@ final class WeatherApiService {
     private var userLocation: UserLocation?
     private var subscriptions = Set<AnyCancellable>()
     
+    private var currentLanguage: WeatherLocalization.Language
     
     init(locationManager: LocationManagerProtocol,
          networkManager: NetworkManagerProtocol,
@@ -30,6 +31,7 @@ final class WeatherApiService {
         self.locationManager = locationManager
         self.networkManager = networkManager
         self.mapper = mapper
+        self.currentLanguage = WeatherLocalization.shared.currentLanguage
     }
     
     private func getCurrentLocation() {
@@ -46,14 +48,16 @@ final class WeatherApiService {
 
 extension WeatherApiService: WeatherApiServiceProtocol {
     func getCities(for city: String) async throws -> [CitySearchModel] {
-        let data = try await networkManager.getRequest(enterPoint: .searchCity(text: city))
+        let data = try await networkManager.getRequest(enterPoint: .searchCity(text: city,
+                                                                               language: currentLanguage.rawValue))
         let locations = try await mapper.map(from: data, jsonType: SearchLocation.self)
         return locations.response.geoObjectCollection.featureMember.map(CitySearchModel.init)
     }
     
     
     func getWeather(for userLocation: UserLocation) async throws -> City {
-        let data = try await networkManager.getRequest(enterPoint: .weather(location: userLocation))
+        let data = try await networkManager.getRequest(enterPoint: .weather(location: userLocation,
+                                                                            language: currentLanguage.rawValue))
         let weather = try await mapper.map(from: data, jsonType: WeatherCodable.self)
         let city = City(cityInfo: weather)
         return city

@@ -20,6 +20,9 @@ final class HourlyViewModel {
     
     init(city: City) {
         self.city = city
+    }
+    
+    func getWeather() {
         state = .loaded(city: city)
     }
     

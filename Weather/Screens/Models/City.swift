@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct City: Hashable {
+struct City: Hashable {
     let name: String
     let weather: WeatherCity
     
@@ -57,7 +57,7 @@ extension FactWeather {
     init(fact: Fact) {
         self.temp = fact.temp
         self.feelLike = fact.feelsLike
-        self.condition = getConditionRUS(condition: fact.condition)
+        self.condition = getConditionString(condition: fact.condition)
         self.icon = URL(string: "https://yastatic.net/weather/i/icons/funky/dark/\(fact.icon).svg")
     }
 }
@@ -224,7 +224,7 @@ extension DayWeather {
         self.precType = day.precType
         self.precStrength = day.precStrength
         self.icon = URL(string: "https://yastatic.net/weather/i/icons/funky/dark/\(day.icon).svg")!
-        self.condition = getConditionRUS(condition: day.condition)
+        self.condition = getConditionString(condition: day.condition)
         self.uvIndex = day.uvIndex
         self.feelsLike = day.feelsLike
         self.daytime = day.daytime
@@ -233,47 +233,6 @@ extension DayWeather {
         self.temp = day.temp
     }
 }
-//
-//extension DayShortWeather {
-//    init(dayShort: DayShort) {
-//        self.temp = dayShort.temp
-//        self.feelsLike = dayShort.feelsLike
-//        self.condition = dayShort.condition
-//        self.windSpeed = dayShort.windSpeed
-//        self.precStrength = dayShort.precStrength
-//        self.cloudness = dayShort.cloudness
-//    }
-//}
-//
-//struct NightShortWeather: Hashable {
-//    let temp: Double
-//    let feelsLike: Double
-//    let condition: String
-//    let windSpeed: Double
-//    let precStrength: Double
-//    let cloudness: Double
-//    
-//    init(temp: Double, feelsLike: Double, condition: String, windSpeed: Double, precStrength: Double, cloudness: Double) {
-//        self.temp = temp
-//        self.feelsLike = feelsLike
-//        self.condition = condition
-//        self.windSpeed = windSpeed
-//        self.precStrength = precStrength
-//        self.cloudness = cloudness
-//    }
-//}
-//
-//extension NightShortWeather {
-//    init(nightShort: NightShort) {
-//        self.temp = nightShort.temp
-//        self.feelsLike = nightShort.feelsLike
-//        self.condition = nightShort.condition
-//        self.windSpeed = nightShort.windSpeed
-//        self.precStrength = nightShort.precStrength
-//        self.cloudness = nightShort.cloudness
-//    }
-//}
-
 
 struct WeatherHour: Hashable {
     let hour: String
@@ -313,50 +272,5 @@ extension WeatherHour {
         self.icon = URL(string: "https://yastatic.net/weather/i/icons/funky/dark/\(weatherHour.icon).svg")!
         self.precProb = weatherHour.precProb
         self.humidity = weatherHour.humidity
-    }
-}
-
-private func getConditionRUS(condition: String) -> String {
-    switch condition {
-    case "clear":
-        return "Ясно"
-    case "partly-cloudy":
-        return "Малооблачно"
-    case "cloudy":
-        return "Облачно с прояснениями"
-    case "overcast":
-        return "Пасмурно"
-    case "drizzle":
-        return "Морось"
-    case "light-rain":
-        return "Небольшой дождь"
-    case "rain":
-        return "Дождь"
-    case "moderate-rain":
-        return "Умеренно сильный дождь"
-    case "heavy-rain":
-        return "Сильный дождь"
-    case "continuous-heavy-rain":
-        return "Длительный сильный дождь"
-    case "showers":
-        return "Ливень"
-    case "wet-snow":
-        return "Дождь со снегом"
-    case "light-snow":
-        return "Небольшой снег"
-    case "snow":
-        return "Снег"
-    case "snow-showers":
-        return "Снегопад"
-    case "hail":
-        return "Град"
-    case "thunderstorm":
-        return "Гроза"
-    case "thunderstorm-with-rain":
-        return "Дождь с грозой"
-    case "thunderstorm-with-hail":
-        return "Гроза с градом"
-    default:
-        return "Перепроверь init у struct Weather"
     }
 }
