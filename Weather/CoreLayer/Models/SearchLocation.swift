@@ -7,7 +7,7 @@ import Foundation
 
 // MARK: - SearchLocation
 struct SearchLocation: Codable {
-    let response: Response
+     let response: Response
 }
 
 // MARK: - Response

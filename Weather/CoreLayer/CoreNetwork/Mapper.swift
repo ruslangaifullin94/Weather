@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol CoreMapperProtocol {
+public protocol CoreMapperProtocol {
     func map<T: Decodable>(from data: Data, jsonType: T.Type) async throws -> T
 }
 
-final class CoreMapper {
+public final class CoreMapper {
     private lazy var decoder: JSONDecoder = {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -20,10 +20,12 @@ final class CoreMapper {
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         return decoder
     }()
+    
+    public init() {}
 }
 
 extension CoreMapper: CoreMapperProtocol {
-    func map<T>(from data: Data, jsonType: T.Type) async throws -> T where T : Decodable {
+    public func map<T>(from data: Data, jsonType: T.Type) async throws -> T where T : Decodable {
         print(String(data: data, encoding: .utf8)!)
         do {
             let model = try decoder.decode(jsonType.self, from: data)

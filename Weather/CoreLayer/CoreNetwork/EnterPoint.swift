@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum EnterPoint {
+public enum EnterPoint {
     case weather(location: UserLocation, language: String)
     case searchCity(text: String, language: String)
     

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CommonCoreService
 
 struct City: Hashable {
     let name: String

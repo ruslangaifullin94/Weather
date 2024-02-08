@@ -7,10 +7,10 @@
 
 import UIKit
 
-actor ImageDownloader {
+public actor ImageDownloader {
     private var cache = NSCache<NSURL, UIImage>()
     
-    init(cacheCountLimit: Int) {
+    public init(cacheCountLimit: Int) {
         cache.countLimit = cacheCountLimit
     }
     
