@@ -8,7 +8,7 @@
 import Foundation
 public final class WeatherLocalization {
     
-    public static let shared = WeatherLocalization()
+    static let shared = WeatherLocalization()
     
     /// Текущий язык приложения.
     public var currentLanguage: Language {
@@ -56,6 +56,6 @@ extension WeatherLocalization {
     }
 }
 
-public func getConditionString(condition: String) -> String {
+func getConditionString(condition: String) -> String {
     return "Weather.Condition.\(condition)".localized
 }

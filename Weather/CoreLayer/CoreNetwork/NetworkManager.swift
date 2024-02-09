@@ -7,17 +7,15 @@
 
 import Foundation
 
-public protocol NetworkManagerProtocol {
+protocol NetworkManagerProtocol {
     func getRequest(enterPoint: EnterPoint) async throws -> Data
 }
 
-public final class CoreNetworkManager {
-    public init() { }
-}
+final class CoreNetworkManager { }
 
 extension CoreNetworkManager: NetworkManagerProtocol {
     
-    public func getRequest(enterPoint: EnterPoint) async throws -> Data {
+    func getRequest(enterPoint: EnterPoint) async throws -> Data {
         let (data, response) = try await URLSession.shared.data(for: enterPoint.urlRequest)
         
         guard let response = response as? HTTPURLResponse else {

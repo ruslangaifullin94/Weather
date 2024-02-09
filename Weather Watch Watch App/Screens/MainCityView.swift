@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct MainCityView: View {
+    
     @Binding var selectedCity: CityWatch?
     var body: some View {
-
+        
         ZStack {
             Color.blue // Замените на цвет или изображение фона, которое вы хотите использовать
                 .edgesIgnoringSafeArea(.all) // Игнорирует безопасную область экрана, чтобы фон занимал всю доступную область
@@ -29,8 +30,8 @@ struct MainCityView: View {
                 Spacer()
             }
             
-           
+            
         }
-
+        
     }
 }

@@ -90,6 +90,7 @@ final class PageViewModel {
     
     private func saveLocations(userLocation: UserLocation) {
         CoreDataHandler.shared.saveUserLocation(userLocation)
+        WatchConnect.shared.sendDataToWatch(locations: [userLocation])
     }
 }
 

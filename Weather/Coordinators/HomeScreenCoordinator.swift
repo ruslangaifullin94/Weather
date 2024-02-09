@@ -26,8 +26,9 @@ final class HomeScreenCoordinator: DefaultCoordinator {
         let weatherApiService = WeatherApiService(locationManager: locationManager, 
                                                   networkManager: networkManager,
                                                   mapper: mapper)
-        let userLocation = CoreDataHandler.shared.fetchAllUserLocations()
-        let pageViewModel = PageViewModel(locations: userLocation, 
+        let userLocations = CoreDataHandler.shared.fetchAllUserLocations()
+            WatchConnect.shared.sendDataToWatch(locations: userLocations)
+        let pageViewModel = PageViewModel(locations: userLocations,
                                           weatherApiService: weatherApiService,
                                           coordinator: self,
                                           accessLocation: accessLocation)

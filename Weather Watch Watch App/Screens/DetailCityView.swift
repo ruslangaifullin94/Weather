@@ -11,15 +11,15 @@ struct DetailCityView: View {
     @Binding var selectedCity: CityWatch?
     var body: some View {
         ZStack {
-            Color.green // Замените на цвет или изображение фона, которое вы хотите использовать
-                .edgesIgnoringSafeArea(.all) // Игнорирует безопасную область экрана, чтобы фон занимал всю доступную область
-            
+            Color.green
+                .edgesIgnoringSafeArea(.all)
             VStack {
                 Spacer()
                 if let selectedCity {
-                    Text("\(selectedCity.weather.fact.temp) °C") // Замените на вашу переменную с температурой
-                        .font(.title)
-                    Text("\(selectedCity.name)") // Замените на вашу переменную с названием города
+                    
+                    Text("UI.Weather.LikeFeell".localized + " \(selectedCity.weather.fact.feelLike) " + "°C")
+                        .font(.title2)
+                    Text("\(selectedCity.weather.fact.condition)")
                         .font(.headline)
                 } else {
                     EmptyView()
@@ -30,7 +30,3 @@ struct DetailCityView: View {
         }
     }
 }
-//
-//#Preview {
-//    DetailCityView(selectedCity: nil)
-//}

@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-//    var viewModelFactory = MainViewModelFactory()
-    
+    var viewModel = ViewModelFactory().makeViewModel()
+//    let connect = PhoneConnect.shared
+
     @State private var isSecondViewPresented = false
     @State private var selectedCity: CityWatch?
     @State private var selection = 0
@@ -28,11 +29,11 @@ struct ContentView: View {
 //        }
         .onTapGesture {
             isSecondViewPresented.toggle()
+            viewModel.getWeather()
         }
         .tabViewStyle(.verticalPage)
         .fullScreenCover(isPresented: $isSecondViewPresented, content: {
-            ChooseCityView(selectedCity: $selectedCity,
-                           isPresented: $isSecondViewPresented)
+            ChooseCityView(viewModel: viewModel, selectedCity: $selectedCity, isPresented: $isSecondViewPresented)
         })
     }
 }

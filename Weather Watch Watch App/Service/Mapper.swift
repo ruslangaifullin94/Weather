@@ -1,8 +1,8 @@
 //
 //  Mapper.swift
-//  diplom
+//  Weather Watch Watch App
 //
-//  Created by Руслан Гайфуллин on 25.12.2023.
+//  Created by Руслан Гайфуллин on 09.02.2024.
 //
 
 import Foundation

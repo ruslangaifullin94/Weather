@@ -13,26 +13,24 @@ final class WatchConnect: NSObject {
     
     static let shared = WatchConnect()
     
-    private let session: WCSession
+    private let session: WCSession = WCSession.default
     
     override init() {
-        guard WCSession.isSupported() else { fatalError() } // In a productive code, this should handled more gracefully
-        self.session = WCSession.default
         super.init()
+        guard WCSession.isSupported() else {
+            assertionFailure("WcSession not supported")
+            return
+        }
         self.session.delegate = self
         self.session.activate()
     }
     
-    func sendDataToWatch() {
-        let locations = CoreDataHandler.shared.fetchAllUserLocations()
-        
+    func sendDataToWatch(locations: [UserLocation]) {
         do {
-            let locationsData = try NSKeyedArchiver.archivedData(withRootObject: locations, requiringSecureCoding: false)
-            if session.isReachable {
-                session.sendMessage(["locations" : locationsData], replyHandler: nil) { error in
-                    print(error.localizedDescription)
-                }
-            }
+            let locationsData = try JSONEncoder().encode(locations)
+            let dict = ["locations": locationsData]
+                session.sendMessage(dict, replyHandler: nil)
+            
         } catch {
             print("error archived Data")
             return
@@ -44,17 +42,17 @@ final class WatchConnect: NSObject {
 extension WatchConnect: WCSessionDelegate {
     
     func sessionDidBecomeInactive(_ session: WCSession) {
-        
+        session.activate()
     }
     
     func sessionDidDeactivate(_ session: WCSession) {
-        
+        session.activate()
     }
-    
     
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        
+        if let error {
+            print("session activation failed with error - \(error.localizedDescription)")
+        }
     }
-    
     
 }

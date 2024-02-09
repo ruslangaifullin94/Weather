@@ -1,8 +1,8 @@
 //
-//  NetworkErrors.swift
-//  diplom
+//  NetworkError.swift
+//  Weather Watch Watch App
 //
-//  Created by Руслан Гайфуллин on 25.12.2023.
+//  Created by Руслан Гайфуллин on 09.02.2024.
 //
 
 import Foundation
@@ -15,11 +15,11 @@ enum NetworkError: Error {
     var errorDescription: String {
         switch self {
         case .noInternet:
-            return "notInternet".localized
+            return "notInternet"
         case .noData:
-            return "notData".localized
+            return "notData"
         case .somethingWentWrong:
-            return "somethingWentWrong".localized
+            return "somethingWentWrong"
         }
     }
 }

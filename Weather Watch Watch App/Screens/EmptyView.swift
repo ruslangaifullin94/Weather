@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EmptyView: View {
     var body: some View {
-        Text("Tap for choose city")
+        Text("Tap for choose city".localized)
     }
 }
 

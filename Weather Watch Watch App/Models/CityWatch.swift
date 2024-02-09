@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CityWatch: Identifiable {
+struct CityWatch: Hashable, Identifiable {
     
     var id: String {
         return name
@@ -24,7 +24,7 @@ extension CityWatch {
     }
 }
 
-struct WeatherCityWatch {
+struct WeatherCityWatch: Hashable {
     let fact: FactWeatherWatch
     init(fact: FactWeatherWatch) {
         self.fact = fact
@@ -37,7 +37,7 @@ extension WeatherCityWatch {
     }
 }
 
-struct FactWeatherWatch {
+struct FactWeatherWatch: Hashable {
     let temp: Int
     let feelLike: Int
     let condition: String
@@ -59,7 +59,7 @@ extension FactWeatherWatch {
         self.icon = URL(string: "https://yastatic.net/weather/i/icons/funky/dark/\(fact.icon).svg")
     }
 }
-
-public func getConditionString(condition: String) -> String {
-    return "Weather.Condition.\(condition)"
-}
+//
+//public func getConditionString(condition: String) -> String {
+//    return "Weather.Condition.\(condition)".localized
+//}
