@@ -13,4 +13,7 @@ UIKit + SWiftUI, MVVM, Combine, Async/Await, Coordinators
 <img title="a title" alt="Alt text" src="images/screenWA2.png">
 
 
-https://github.com/ruslangaifullin94/Weather/blob/origin/feature/v.1.4/images/screencast.mov
+
+
+https://github.com/ruslangaifullin94/Weather/assets/124489514/67c2c06a-217b-4fe7-b214-75a2fada0768
+
